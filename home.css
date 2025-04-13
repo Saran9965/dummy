@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('logo2.png');
+    background: url('logo/logo2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
