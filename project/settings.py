@@ -1,4 +1,5 @@
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -80,6 +81,18 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+import dj_database_url
+
+DATABASES = {
+    'default': dj_database_url.config(
+        default='postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect',
+        conn_max_age=600,
+        ssl_require=True  # Important for Render
+    )
+}
+
+
+DATABASES['default']=dj_database_url.parse("postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect")
 
 
 # Password validation
