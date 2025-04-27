@@ -104,20 +104,52 @@ def add_service(request):
     return render(request, 'add_service.html', {'form': form})
 
 def plumber(request):
+    selected_location = request.GET.get('location', '')
     services = Service.objects.filter(service_type='PLUMBER')
-    return render(request, 'plumber.html', {'services': services})
+    if selected_location:
+        services = services.filter(address__icontains=selected_location)
+    locations = Service.objects.filter(service_type='PLUMBER') \
+                               .values_list('address', flat=True).distinct()
+    return render(request, 'plumber.html', {
+        'services': services,
+        'locations': locations,
+    })
 
 def carpenter(request):
+    selected_location = request.GET.get('location', '')
     services = Service.objects.filter(service_type='CARPENTER')
-    return render(request, 'carpenter.html', {'services': services})
+    if selected_location:
+        services = services.filter(address__icontains=selected_location)
+    locations = Service.objects.filter(service_type='CARPENTER') \
+                               .values_list('address', flat=True).distinct()
+    return render(request, 'carpenter.html', {
+        'services': services,
+        'locations': locations,
+    })
 
 def electrician(request):
+    selected_location = request.GET.get('location', '')
     services = Service.objects.filter(service_type='ELECTRICIAN')
-    return render(request, 'electrician.html', {'services': services})
+    if selected_location:
+        services = services.filter(address__icontains=selected_location)
+    locations = Service.objects.filter(service_type='ELECTRICIAN') \
+                               .values_list('address', flat=True).distinct()
+    return render(request, 'electrician.html', {
+        'services': services,
+        'locations': locations,
+    })
 
 def tvtech(request):
+    selected_location = request.GET.get('location', '')
     services = Service.objects.filter(service_type='TV TECH')
-    return render(request, 'tvtech.html', {'services': services})
+    if selected_location:
+        services = services.filter(address__icontains=selected_location)
+    locations = Service.objects.filter(service_type='TV TECH') \
+                               .values_list('address', flat=True).distinct()
+    return render(request, 'tvtech.html', {
+        'services': services,
+        'locations': locations,
+    })
 
 def plum(request):
     return render(request,'plum.html')
