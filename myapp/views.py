@@ -14,9 +14,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 @login_required(login_url='login')
 def signup(request):
     if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
+        name = request.POST.get('name', '').strip().lower()
         email = request.POST.get('email', '').strip()
-        password = request.POST.get('password', '').strip()
+        password = request.POST.get('password', '').strip().lower()
         address = request.POST.get('address', '').strip()
         contactno = request.POST.get('contactno', '').strip()
         location = request.POST.get('location', '').strip()
@@ -48,8 +48,8 @@ def signup(request):
 
 def loginpage(request):
     if request.method == 'POST':
-        username = request.POST.get('name')
-        password = request.POST.get('password')
+        username = request.POST.get('name').lower()
+        password = request.POST.get('password').lower()
 
         if not username or not password:
             messages.error(request, "Both fields are required!")
