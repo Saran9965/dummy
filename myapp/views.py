@@ -20,7 +20,7 @@ import json
 @login_required(login_url='login')
 def signup(request):
     if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
+        name = request.POST.get('name', '').strip().lower()
         email = request.POST.get('email', '').strip()
         password = request.POST.get('password', '').strip()
         address = request.POST.get('address', '').strip()
@@ -54,7 +54,7 @@ def signup(request):
 
 def loginpage(request):
     if request.method == 'POST':
-        username = request.POST.get('name')
+        username = request.POST.get('name').lower()
         password = request.POST.get('password')
 
         if not username or not password:
