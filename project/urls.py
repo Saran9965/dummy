@@ -24,6 +24,9 @@ urlpatterns = [
     path('plum/', views.plum, name='plum'),
     path('elect/', views.elect, name='elect'),
     path('tvtech/', views.tvtec, name='tvtec'),
+    path('service/<int:service_id>/rate/', views.submit_rating, name='submit_rating'),
+    path('service/<int:service_id>/review/', views.submit_review, name='submit_review'),
+    path('service/<int:service_id>/reviews/', views.get_reviews, name='get_reviews'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

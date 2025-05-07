@@ -52,8 +52,8 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 .profile-box img {
-    width: 190px;
-    height: 190px;
+    width: 220px;
+    height: 250px;
     object-fit: cover;
     border-radius: 10px;
     border: 2px solid #007BFF; 
@@ -63,7 +63,7 @@ body {
 }
 .profile-details p {
     margin: 0;
-    padding: 10px 0;
+    padding: 8px 1px 1px ;
     font-size: 1.05rem;
     color: #222;
 }
@@ -94,4 +94,52 @@ body {
 h2 {
     font-size: 2rem;
     font-weight: 600;
+}
+.rating-stars {
+    direction: rtl;
+    display: inline-flex;
+}
+.rating-stars input[type="radio"] {
+    display: none;
+}
+.rating-stars label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+.rating-stars input[type="radio"]:checked ~ label,
+.rating-stars label:hover,
+.rating-stars label:hover ~ label {
+    color: gold;
+}
+strong{
+    color:#00425A;
+    font-size: 20px;
+}
+span{
+    font-size: 19px;
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+.modal-content {
+    background-color: #f8f9fa; 
+    color: black;
+}
+.modal-header, .modal-footer {
+    color: black;
+}
+.modal-title {
+    color: black; 
+}
+.modal-body {
+    color: black; 
+}
+.modal-footer button {
+    color: #f8f9fa;
+}
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
 }
