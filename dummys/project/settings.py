@@ -1,14 +1,11 @@
+from pathlib import Path
+import dj_database_url  
 import os
-from pathlib import Path
-import dj_database_url
-from pathlib import Path
-from decouple import config
 
-
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-aeb3w3m^-#o1)qb45ypkg$r5zgm$nz!63okw#-95$4=)pywowj'
 # Ensure sessions are saved in the database
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 # Add this if behind a proxy/load balancer (like Render)
@@ -19,11 +16,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-DEBUG =  config("DEBUG",cast=bool)  #default is True i can change that it is False because of hosting
+DEBUG = False  #default is True i can change that it is False because of hosting
 
 # if u can false the debug is can't allowed static files
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS") .split(",")
+ALLOWED_HOSTS = ['*']
 
 import os
 STATICFILES_DIRS = [
@@ -79,22 +76,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-# Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASE_URL = config("DATABASE_URL", default=None)
+DATABASE_URL = os.environ.get('DATABASE_URL')
 
 if DATABASE_URL:
     DATABASES = {
-        'default': dj_database_url.parse(DATABASE_URL)
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            ssl_require=True
+        )
     }
 else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',       
         }
     }
+
 
 
 # Password validation
@@ -142,6 +141,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = '/login/'  # This ensures Django redirects to your actual login page
 LOGIN_REDIRECT_URL = '/home/'  # Redirect after successful login
 LOGOUT_REDIRECT_URL = '/login/'  # Redirect after logout
-
-
 
