@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'your-dev-secret-key')  # fallback for
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
 # Render & local development domains
-ALLOWED_HOSTS = ['vconnect-home-services.onrender.com', 'localhost', '127.0.0.1:8000/']
+ALLOWED_HOSTS = ['*']
 
 # --- Applications ---
 INSTALLED_APPS = [
