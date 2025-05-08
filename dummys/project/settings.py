@@ -2,99 +2,7 @@ from pathlib import Path
 import dj_database_url  
 import os
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-aeb3w3m^-#o1)qb45ypkg$r5zgm$nz!63okw#-95$4=)pywowj'
-# Ensure sessions are saved in the database
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-# Add this if behind a proxy/load balancer (like Render)
-# Recognize secure connections behind Render's proxy
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-# Enable secure cookies if using HTTPS
-# If using HTTPS on Render
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-DEBUG = False  #default is True i can change that it is False because of hosting
-
-# if u can false the debug is can't allowed static files
-
-ALLOWED_HOSTS = ['*']
-
-import os
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-# Application definition
-
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'project',
-    'myapp',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-]
-
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-ROOT_URLCONF = 'project.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = 'project.wsgi.application'
-
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-import dj_database_url
-
-DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect',
-        conn_max_age=600,
-        ssl_require=True  # Important for Render
-   )
-}
-DATABASES['default']=dj_database_url.parse("postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect")
-
-from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-aeb3w3m^-#o1)qb45ypkg$r5zgm$nz!63okw#-95$4=)pywowj'
@@ -121,7 +29,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 
 # Application definition
 
@@ -171,14 +78,16 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default='postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect',
+        conn_max_age=600,
+        ssl_require=True  # Important for Render
+   )
 }
-
+DATABASES['default']=dj_database_url.parse("postgresql://vconnect_user:f2qehAKwRNeVsOXnFfFpDtv2Lis6ExcC@dpg-d04ulfmuk2gs73e2lbd0-a.singapore-postgres.render.com/vconnect")
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
