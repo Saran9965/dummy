@@ -15,6 +15,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # If using HTTPS on Render
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+# Allow your deployed domain
+CSRF_TRUSTED_ORIGINS = ['https://vconnect-home-services.onrender.com']
+
+# Optional, if needed for frontend/backend split
+CORS_ALLOW_ALL_ORIGINS = True  # Or restrict to your frontend domain
 
 DEBUG = False  #default is True i can change that it is False because of hosting
 
